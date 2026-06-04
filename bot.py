@@ -5,6 +5,15 @@ from config import *
 import asyncio
 import sys
 import logging
+try:
+    loop = asyncio.get_event_loop()
+except RuntimeError:
+    loop = asyncio.new_event_loop()
+    asyncio.set_event_loop(loop)
+
+from pyromod import listen
+from pyrogram import Client
+from config import *
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
