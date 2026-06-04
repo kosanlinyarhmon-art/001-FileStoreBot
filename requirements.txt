@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
 pyrogram==2.0.106
-pyromod>=3.0.0
+pyromod==2.1.0
 sqlalchemy
 TgCrypto
