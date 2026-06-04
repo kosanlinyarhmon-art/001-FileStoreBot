@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
-pyrogram
+pyrogram>=2.0.106
+pyromod>=2.0.0
 tgcrypto
 pysocks
-pyromod
-flask
