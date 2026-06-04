@@ -2,19 +2,17 @@
 from sqlalchemy import create_engine
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker, scoped_session
-
 import os
 import threading
 from sqlalchemy import Column, Boolean, String
 
-# DATABASE_URL ကို အရင်ဦးစားပေးပြီး မရှိရင် sqlite ကို သုံးပါမယ်
 DATABASE_URL = os.environ.get("DATABASE_URL", "sqlite:///database.db")
-
 BASE = declarative_base()
 
+# engine ကို ဒီနေရာမှာ အရင်ကြေညာထားလိုက်ပါ
+engine = create_engine(DATABASE_URL)
+
 def start() -> scoped_session:
-    # client_encoding="utf8" ကို ဖျက်လိုက်ပါပြီ
-    engine = create_engine(DATABASE_URL)
     BASE.metadata.bind = engine
     BASE.metadata.create_all(engine)
     return scoped_session(sessionmaker(bind=engine, autoflush=False))
@@ -31,14 +29,14 @@ class Database(BASE):
         self.id = str(id)
         self.up_name = up_name
 
-# Table အလိုအလျောက် ဆောက်ပေးပါမယ်
+# engine ကို ဒီမှာ သုံးလို့ရသွားပါပြီ
 Database.__table__.create(bind=engine, checkfirst=True)
 
 async def update_as_name(id, mode):
     with INSERTION_LOCK:
         msg = SESSION.query(Database).get(str(id))
         if not msg:
-            msg = Database(str(id), mode) # ဒီနေရာလေးကို mode နဲ့ ပြင်ပေးထားပါတယ်
+            msg = Database(str(id), mode)
         else:
             msg.up_name = mode
         SESSION.add(msg)
