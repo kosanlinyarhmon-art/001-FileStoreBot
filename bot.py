@@ -1,18 +1,14 @@
-# bot.py
 import asyncio
 import sys
 import logging
-from pyromod import listen
 from pyrogram import Client
 from config import *
 
 # Logging စတင်ခြင်း
 logging.basicConfig(level=logging.INFO)
 
-# Event Loop စီစဉ်ခြင်း
-if sys.platform != 'win32':
-    loop = asyncio.new_event_loop()
-    asyncio.set_event_loop(loop)
+# Pyromod ကို import လုပ်စရာမလိုပါ၊ ရိုးရိုး Pyrogram client ပဲသုံးပါ
+# Pyromod က install လုပ်ထားရင် သူ့ဘာသာအလုပ်လုပ်သွားပါလိမ့်မယ်
 
 # Bot Client ဆောက်ခြင်း
 plugins = dict(root="plugins")
@@ -31,4 +27,5 @@ if __name__ == "__main__":
         print("Bot is starting...")
         bot.run()
     except Exception as e:
+        # Error အသေးစိတ်ကို မြင်ရအောင် traceback ကိုလည်း ထည့်စစ်နိုင်ပါတယ်
         print(f"Error detected: {e}")
