@@ -3,3 +3,4 @@ pyrogram==2.0.106
 pyromod==2.1.0
 sqlalchemy
 TgCrypto
+aiohttp
