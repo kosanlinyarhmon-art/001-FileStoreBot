@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 import os
 
 API_ID = int(os.environ.get("API_ID", 0))
