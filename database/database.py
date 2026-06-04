@@ -32,7 +32,7 @@ class Database(BASE):
         self.up_name = up_name
 
 # Table အလိုအလျောက် ဆောက်ပေးပါမယ်
-Database.__table__.create(checkfirst=True)
+Database.__table__.create(bind=engine, checkfirst=True)
 
 async def update_as_name(id, mode):
     with INSERTION_LOCK:
