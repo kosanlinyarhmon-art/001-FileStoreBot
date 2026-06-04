@@ -1,12 +1,7 @@
 # -*- coding: utf-8 -*-
-import os
 from pyrogram import Client, filters
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup
-# ဒီအောက်က စာကြောင်းကို ပြင်ရေးပေးပါ
 from pyrogram.errors import UserNotParticipant
-from pyromod.exceptions import ListenerCanceled 
-# အထက်ပါအတိုင်း (စာကြောင်းရေ ၇ နဲ့ ၈ လောက်မှာ) အစားထိုးပါ
-
 from database.database import *
 from config import *
 
@@ -26,7 +21,6 @@ async def forcesub(c, m):
         buttons = [[InlineKeyboardButton(text='Uᴘᴅᴀᴛᴇs Cʜᴀɴɴᴇʟ 🔖', url=f"https://t.me/{UPDATE_CHANNEL}")]]
         if m.text and 'start' in m.text and len(m.text.split(' ')) > 1:
             try:
-                # chat_id, msg_id ကို safe ဖြစ်အောင် ခွဲထုတ်ခြင်း
                 data = m.text.split(' ')[1]
                 if '_' in data:
                     chat_id, msg_id = data.split('_')
@@ -60,7 +54,6 @@ async def refresh_cb(c, m):
 
     _, chat_id, msg_id = m.data.split("+")
     
-    # DB_CHANNEL_ID ကို သုံးပြီး message ရှာခြင်း
     source_id = int(DB_CHANNEL_ID) if DB_CHANNEL_ID else int(chat_id)
     msg = await c.get_messages(source_id, int(msg_id))
     
