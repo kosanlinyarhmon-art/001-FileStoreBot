@@ -12,11 +12,11 @@ from sqlalchemy import Column, Integer, Boolean, String, ForeignKey, UniqueConst
 DATABASE_URL = os.environ.get("DATABASE_URL", "sqlite:///database.db")
 
 def start() -> scoped_session:
-    engine = create_engine(DATABASE_URL, client_encoding="utf8")
+    # URL ကို အတင်းအကျပ် sqlite ဖြစ်စေရန်
+    engine = create_engine("sqlite:///database.db", client_encoding="utf8")
     BASE.metadata.bind = engine
     BASE.metadata.create_all(engine)
     return scoped_session(sessionmaker(bind=engine, autoflush=False))
-
 BASE = declarative_base()
 SESSION = start()
 
