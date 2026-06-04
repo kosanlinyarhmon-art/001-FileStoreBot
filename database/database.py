@@ -9,7 +9,7 @@ import asyncio
 
 from sqlalchemy import Column, Integer, Boolean, String, ForeignKey, UniqueConstraint, func
 
-DATABASE_URL = os.environ.get("DATABASE_URL", "")
+DATABASE_URL = os.environ.get("DATABASE_URL", "sqlite:///database.db")
 
 def start() -> scoped_session:
     engine = create_engine(DATABASE_URL, client_encoding="utf8")
