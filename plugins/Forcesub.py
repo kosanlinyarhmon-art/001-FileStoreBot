@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 import os
 from pyrogram import Client, filters
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup
