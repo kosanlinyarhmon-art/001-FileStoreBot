@@ -4,6 +4,16 @@ from pyrogram import Client
 from config import *
 import asyncio
 import sys
+import logging
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger(__name__)
+
+# အပေါ်က code တွေအပြီးမှာ ...
+try:
+    print("Bot is starting...")
+    bot.run()
+except Exception as e:
+    print(f"Error detected: {e}")
 
 # Event loop ပြဿနာကို ဖြေရှင်းရန်
 if sys.platform == 'win32':
