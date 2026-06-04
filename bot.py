@@ -2,6 +2,19 @@
 import os
 import logging
 import logging.config
+from flask import Flask
+from threading import Thread
+
+app = Flask(__name__)
+@app.route('/')
+def home():
+    return "Bot is running!"
+
+def run():
+    app.run(host='0.0.0.0', port=10000)
+
+# Bot မ run ခင် ဒီ thread ကို အရင် run ပါ
+Thread(target=run).start()
 
 # Get logging configurations
 logging.getLogger().setLevel(logging.ERROR)
