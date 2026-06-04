@@ -2,3 +2,4 @@
 pyrogram==2.0.106
 pyromod>=3.0.0
 sqlalchemy
+TgCrypto
