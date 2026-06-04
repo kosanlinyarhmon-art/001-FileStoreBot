@@ -49,3 +49,5 @@ bot = Client(
 
 print("Bot is starting...")
 bot.run()
+except Exception as e:
+        print(f"Error detected: {e}")
