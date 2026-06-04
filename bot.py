@@ -1,14 +1,16 @@
-import asyncio
 import sys
 import logging
+import traceback
 from pyrogram import Client
+import pyromod # pyromod ကို import လုပ်ထားခြင်းက patching လုပ်ဖို့ အရေးကြီးပါတယ်
 from config import *
 
 # Logging စတင်ခြင်း
-logging.basicConfig(level=logging.INFO)
-
-# Pyromod ကို import လုပ်စရာမလိုပါ၊ ရိုးရိုး Pyrogram client ပဲသုံးပါ
-# Pyromod က install လုပ်ထားရင် သူ့ဘာသာအလုပ်လုပ်သွားပါလိမ့်မယ်
+logging.basicConfig(
+    level=logging.INFO,
+    format="%(asctime)s - %(name)s - %(levelname)s - %(message)s"
+)
+logger = logging.getLogger(__name__)
 
 # Bot Client ဆောက်ခြင်း
 plugins = dict(root="plugins")
@@ -24,8 +26,9 @@ bot = Client(
 # Bot ကို Run ခြင်း
 if __name__ == "__main__":
     try:
-        print("Bot is starting...")
+        logger.info("Bot is starting...")
         bot.run()
-    except Exception as e:
-        # Error အသေးစိတ်ကို မြင်ရအောင် traceback ကိုလည်း ထည့်စစ်နိုင်ပါတယ်
-        print(f"Error detected: {e}")
+    except Exception:
+        # Error တက်တဲ့နေရာကို အတိအကျဖော်ပြပေးမယ့် traceback ကို သုံးပါ
+        logger.error("Error detected:")
+        traceback.print_exc()
