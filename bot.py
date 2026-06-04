@@ -1,6 +1,7 @@
 import sys
 import logging
 import traceback
+import time
 from pyrogram import Client
 import pyromod # pyromod ကို import လုပ်ထားခြင်းက patching လုပ်ဖို့ အရေးကြီးပါတယ်
 from config import *
@@ -27,6 +28,7 @@ bot = Client(
 if __name__ == "__main__":
     try:
         logger.info("Bot is starting...")
+        time.sleep(5)
         bot.run()
     except Exception:
         # Error တက်တဲ့နေရာကို အတိအကျဖော်ပြပေးမယ့် traceback ကို သုံးပါ
